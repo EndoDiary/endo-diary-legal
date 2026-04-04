@@ -1,55 +1,388 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Endo Diary – Juridische informatie</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Endo Diary – Jouw persoonlijke endometriose dagboek</title>
+  <meta name="description" content="Endo Diary helpt jou bij het bijhouden van jouw klachten en symptomen, zodat jij eindelijk gehoord wordt door jouw arts." />
+  <meta name="robots" content="index, follow" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── Reset & base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  <meta name="description" content="Privacybeleid en gebruiksvoorwaarden van Endo Diary.">
-  <meta name="robots" content="index, follow">
+    body {
+      background: #faf4f7;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #2d2d2d;
+      line-height: 1.6;
+    }
 
-  <link rel="stylesheet" href="style.css">
+    .page-wrapper {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 3rem 1.25rem 4rem;
+    }
+
+    /* ── Branding ── */
+    .brand {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .brand h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #1a1a1a;
+      letter-spacing: -0.02em;
+    }
+
+    .brand .tagline {
+      font-size: 0.95rem;
+      color: #999;
+      margin-top: 0.25rem;
+    }
+
+    /* ── Cards ── */
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.07);
+      padding: 2rem 1.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── Rapport unlock card ── */
+    .rapport-card {
+      border-top: 4px solid #b5477a;
+    }
+
+    .rapport-header {
+      margin-bottom: 1.25rem;
+    }
+
+    .rapport-header .label {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #b5477a;
+      background: #fde8f2;
+      padding: 0.25rem 0.65rem;
+      border-radius: 20px;
+      margin-bottom: 0.75rem;
+    }
+
+    .rapport-header h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      line-height: 1.25;
+      margin-bottom: 0.6rem;
+    }
+
+    .rapport-header .intro {
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.65;
+    }
+
+    /* ── Emotional message ── */
+    .heart-message {
+      background: linear-gradient(135deg, #fdf0f6, #fdeef8);
+      border-radius: 14px;
+      padding: 1.1rem 1.25rem;
+      margin: 1.25rem 0;
+      border-left: 3px solid #d4789f;
+    }
+
+    .heart-message p {
+      font-size: 0.9rem;
+      color: #7a3a5a;
+      line-height: 1.65;
+      font-style: italic;
+    }
+
+    /* ── Feature list ── */
+    .feature-list {
+      list-style: none;
+      margin: 1.25rem 0;
+    }
+
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      padding: 0.5rem 0;
+      font-size: 0.92rem;
+      color: #444;
+      border-bottom: 1px solid #f5edf3;
+      line-height: 1.45;
+    }
+
+    .feature-list li:last-child { border-bottom: none; }
+
+    .feature-list .icon {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      background: #b5477a;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+
+    .feature-list .icon svg {
+      width: 11px;
+      height: 11px;
+      stroke: #fff;
+      stroke-width: 3;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ── Price row ── */
+    .price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #fdf0f6;
+      border-radius: 12px;
+      padding: 0.9rem 1.1rem;
+      margin: 1.25rem 0;
+    }
+
+    .price-row .price-label {
+      font-size: 0.85rem;
+      color: #888;
+    }
+
+    .price-row .price-label strong {
+      display: block;
+      font-size: 0.92rem;
+      color: #444;
+      font-weight: 600;
+    }
+
+    .price-row .price-amount {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #b5477a;
+    }
+
+    .price-row .price-period {
+      font-size: 0.78rem;
+      color: #b5477a;
+      font-weight: 500;
+    }
+
+    /* ── CTA button ── */
+    .btn-cta {
+      display: block;
+      width: 100%;
+      padding: 1rem;
+      background: #b5477a;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 12px;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      margin-bottom: 0.75rem;
+    }
+
+    .btn-cta:hover  { background: #9a3566; }
+    .btn-cta:active { transform: scale(0.98); }
+
+    .cancel-note {
+      text-align: center;
+      font-size: 0.78rem;
+      color: #aaa;
+      line-height: 1.5;
+    }
+
+    /* ── Legal card ── */
+    .legal-card h2 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #bbb;
+      margin-bottom: 1rem;
+    }
+
+    .legal-item {
+      margin-bottom: 1.25rem;
+    }
+
+    .legal-item:last-child { margin-bottom: 0; }
+
+    .legal-item h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #2d2d2d;
+      margin-bottom: 0.3rem;
+    }
+
+    .legal-item p {
+      font-size: 0.88rem;
+      color: #777;
+      margin-bottom: 0.4rem;
+      line-height: 1.55;
+    }
+
+    .legal-item a {
+      font-size: 0.88rem;
+      color: #b5477a;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .legal-item a:hover { text-decoration: underline; }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.78rem;
+      color: #ccc;
+      line-height: 1.7;
+    }
+
+    .footer a {
+      color: #ccc;
+      text-decoration: underline;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      border: none;
+      border-top: 1px solid #f0e8ed;
+      margin: 1.25rem 0;
+    }
+  </style>
 </head>
-
 <body>
-  <main class="container legal">
+  <div class="page-wrapper">
 
-    <header>
+    <!-- Branding -->
+    <div class="brand">
       <h1>Endo Diary</h1>
-      <p><strong>Officiële juridische informatie</strong></p>
-    </header>
+      <p class="tagline">Jouw persoonlijke endometriose dagboek</p>
+    </div>
 
-    <section>
-      <h2>Privacybeleid</h2>
-      <p>
-        Lees hoe wij omgaan met jouw gegevens, hoe jouw gezondheidsdata wordt opgeslagen
-        en welke controle jij zelf hebt.
-      </p>
-      <p>
-        <a href="/privacy.html">Bekijk het privacybeleid</a>
-      </p>
-    </section>
+    <!-- ── Rapport unlock card ── -->
+    <div class="card rapport-card">
 
-    <section>
-      <h2>Gebruiksvoorwaarden</h2>
-      <p>
-        Lees de voorwaarden voor het gebruik van de app, inclusief verantwoordelijkheden,
-        betalingen en gebruiksregels.
-      </p>
-      <p>
-        <a href="/terms.html">Bekijk de gebruiksvoorwaarden</a>
-      </p>
-    </section>
+      <div class="rapport-header">
+        <span class="label">Rapport ontgrendelen</span>
+        <h2>Laat jouw arts zien wat jij elke dag doorstaat</h2>
+        <p class="intro">
+          Endometriose is onzichtbaar voor de buitenwereld — maar niet meer in jouw rapport.
+          Met Endo Diary breng jij jouw klachten, pijnscores en patronen samen in één
+          overzicht, zodat jij naar jouw afspraak gaat met bewijs in handen.
+        </p>
+      </div>
 
-    <footer>
-      <p>
-        © 2026 Endo Diary. Alle rechten voorbehouden.
-      </p>
-      <p>
-        Contact: <a href="mailto:support@endodiary.nl">support@endodiary.nl</a>
-      </p>
-    </footer>
+      <!-- Emotional message -->
+      <div class="heart-message">
+        <p>
+          "Jij verdient het om serieus genomen te worden. Jouw pijn is echt,
+          jouw verhaal telt — en dit rapport helpt jou dat te laten zien.
+          We wensen jou heel veel sterkte bij jouw gesprek met jouw arts. 💛"
+        </p>
+      </div>
 
-  </main>
+      <!-- Features -->
+      <ul class="feature-list">
+        <li>
+          <span class="icon">
+            <svg viewBox="0 0 12 12"><polyline points="10 3 5 9 2 6"/></svg>
+          </span>
+          <span>Volledig overzicht van jouw gelogde symptomen en pijnscores</span>
+        </li>
+        <li>
+          <span class="icon">
+            <svg viewBox="0 0 12 12"><polyline points="10 3 5 9 2 6"/></svg>
+          </span>
+          <span>Menstruatiegegevens, flare-ups en behandelingen overzichtelijk gebundeld</span>
+        </li>
+        <li>
+          <span class="icon">
+            <svg viewBox="0 0 12 12"><polyline points="10 3 5 9 2 6"/></svg>
+          </span>
+          <span>Direct deelbaar met jouw arts of specialist</span>
+        </li>
+        <li>
+          <span class="icon">
+            <svg viewBox="0 0 12 12"><polyline points="10 3 5 9 2 6"/></svg>
+          </span>
+          <span>Eenmalige betaling — geen abonnement, geen verborgen kosten</span>
+        </li>
+        <li>
+          <span class="icon">
+            <svg viewBox="0 0 12 12"><polyline points="10 3 5 9 2 6"/></svg>
+          </span>
+          <span>Blijvende toegang tot jouw rapport na aankoop</span>
+        </li>
+      </ul>
+
+      <!-- Price -->
+      <div class="price-row">
+        <div class="price-label">
+          Eenmalige betaling
+          <strong>Inclusief btw · Geen abonnement</strong>
+        </div>
+        <div>
+          <div class="price-amount">€ 9,99</div>
+          <div class="price-period">eenmalig</div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <!-- Vervang de href hieronder door jouw Stripe Payment Link -->
+      <a href="JOUW_STRIPE_PAYMENT_LINK_HIER" class="btn-cta">
+        Ontgrendel mijn rapport →
+      </a>
+
+      <p class="cancel-note">
+        🔒 Veilig betalen via Stripe &nbsp;·&nbsp; Eenmalig · Geen terugkerende kosten
+      </p>
+
+    </div>
+
+    <!-- ── Juridische informatie ── -->
+    <div class="card legal-card">
+      <h2>Officiële informatie</h2>
+
+      <div class="legal-item">
+        <h3>Privacybeleid</h3>
+        <p>Lees hoe wij omgaan met jouw gegevens, hoe jouw gezondheidsdata wordt opgeslagen en welke controle jij zelf hebt.</p>
+        <a href="privacy.html">Bekijk het privacybeleid →</a>
+      </div>
+
+      <hr class="divider" />
+
+      <div class="legal-item">
+        <h3>Gebruiksvoorwaarden</h3>
+        <p>Lees de voorwaarden voor het gebruik van de app, inclusief verantwoordelijkheden, betalingen en gebruiksregels.</p>
+        <a href="terms.html">Bekijk de gebruiksvoorwaarden →</a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      © 2026 Endo Diary. Alle rechten voorbehouden.<br />
+      Contact: <a href="mailto:support@endodiary.nl">support@endodiary.nl</a>
+    </div>
+
+  </div>
 </body>
 </html>
