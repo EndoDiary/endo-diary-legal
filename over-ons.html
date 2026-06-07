@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Over Endo Diary — Wie zit erachter</title>
+<meta name="description" content="Wie zit er achter Endo Diary, waarom bestaat de app, hoe wordt jouw gezondheidsdata beschermd, en wat Endo Diary wel en niet doet.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rose:#A8326B;
+    --rose-dark:#8E2A5A;
+    --rose-light:#FBEFF4;
+    --peach:#FDF3EC;
+    --cream:#FCF6F2;
+    --bg:#FBEFF1;
+    --ink:#2B2B2B;
+    --grey:#5A5A5A;
+    --lightgrey:#8A8A8A;
+    --line:#EBD9E1;
+    --card:#FFFFFF;
+    --green:#2E7D52;
+    --shadow:0 10px 40px rgba(168,50,107,0.08);
+    --shadow-sm:0 4px 18px rgba(168,50,107,0.06);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Nunito',-apple-system,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    padding:0 20px;
+  }
+  .wrap{max-width:680px;margin:0 auto;padding:56px 0 40px;}
+
+  /* Header */
+  header{text-align:center;margin-bottom:40px;}
+  header h1{
+    font-size:42px;font-weight:800;letter-spacing:-1px;color:var(--ink);
+    margin-bottom:6px;
+  }
+  header .tagline{color:var(--lightgrey);font-size:16px;font-weight:600;}
+
+  /* Cards */
+  .card{
+    background:var(--card);
+    border-radius:26px;
+    padding:38px 40px;
+    box-shadow:var(--shadow);
+    margin-bottom:26px;
+    animation:rise .7s cubic-bezier(.2,.7,.3,1) both;
+  }
+  .card.accent{
+    border:2px solid var(--rose);
+    box-shadow:var(--shadow);
+  }
+  @keyframes rise{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+  .card:nth-child(2){animation-delay:.05s;}
+  .card:nth-child(3){animation-delay:.10s;}
+  .card:nth-child(4){animation-delay:.15s;}
+  .card:nth-child(5){animation-delay:.20s;}
+
+  .eyebrow{
+    display:inline-block;
+    background:var(--rose-light);
+    color:var(--rose);
+    font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;
+    padding:6px 14px;border-radius:30px;margin-bottom:18px;
+  }
+  h2{
+    font-size:26px;font-weight:800;color:var(--ink);
+    margin-bottom:16px;letter-spacing:-.4px;line-height:1.25;
+  }
+  h3{
+    font-size:18px;font-weight:700;color:var(--ink);margin:22px 0 8px;
+  }
+  p{color:var(--grey);font-size:16.5px;margin-bottom:16px;}
+  p:last-child{margin-bottom:0;}
+  strong{color:var(--ink);font-weight:700;}
+  .signature{
+    margin-top:22px;text-align:right;color:var(--rose);font-weight:700;font-size:16px;
+  }
+
+  /* Quote */
+  .quote{
+    background:var(--rose-light);
+    border-left:4px solid var(--rose);
+    border-radius:14px;
+    padding:20px 22px;
+    margin:6px 0 4px;
+    font-style:italic;color:var(--rose-dark);font-weight:600;font-size:16px;
+  }
+
+  /* Fact list with checkmarks */
+  .facts{list-style:none;margin:6px 0 0;}
+  .facts li{
+    display:flex;align-items:flex-start;gap:14px;
+    padding:13px 0;border-bottom:1px solid var(--line);
+    color:var(--grey);font-size:16px;
+  }
+  .facts li:last-child{border-bottom:none;}
+  .check{
+    flex:0 0 24px;width:24px;height:24px;border-radius:50%;
+    background:var(--rose);color:#fff;display:flex;align-items:center;justify-content:center;
+    font-size:13px;font-weight:800;margin-top:2px;
+  }
+
+  /* WEL / NIET grid */
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px;}
+  .duo .col{border-radius:16px;padding:20px;}
+  .duo .yes{background:#EEF7F1;}
+  .duo .no{background:#FBF0F2;}
+  .duo h4{font-size:14px;font-weight:800;margin-bottom:12px;letter-spacing:.3px;}
+  .duo .yes h4{color:var(--green);}
+  .duo .no h4{color:#B23A48;}
+  .duo ul{list-style:none;}
+  .duo li{font-size:14.5px;color:var(--grey);padding:6px 0;line-height:1.5;}
+  @media(max-width:560px){.duo{grid-template-columns:1fr;}}
+
+  /* Data / privacy badges */
+  .badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;}
+  .badge{
+    background:var(--peach);border:1px solid var(--line);border-radius:30px;
+    padding:9px 16px;font-size:14px;font-weight:700;color:var(--rose-dark);
+    display:flex;align-items:center;gap:8px;
+  }
+
+  /* CTA buttons */
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px;}
+  .btn{
+    display:inline-block;text-decoration:none;font-weight:800;font-size:16px;
+    padding:15px 28px;border-radius:40px;transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn-primary{background:var(--rose);color:#fff;box-shadow:0 8px 24px rgba(168,50,107,.28);}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(168,50,107,.36);}
+  .btn-ghost{background:transparent;color:var(--rose);border:2px solid var(--rose);}
+  .btn-ghost:hover{background:var(--rose-light);}
+
+  a.inline{color:var(--rose);font-weight:700;text-decoration:none;border-bottom:1.5px solid var(--rose-light);}
+  a.inline:hover{border-bottom-color:var(--rose);}
+
+  /* Disclaimer note */
+  .note{
+    background:var(--peach);border-radius:16px;padding:18px 20px;margin-top:4px;
+    font-size:14.5px;color:var(--grey);
+  }
+  .note strong{color:var(--rose-dark);}
+
+  /* Org section */
+  .org{background:linear-gradient(135deg,#FFFFFF 0%,var(--rose-light) 100%);}
+
+  footer{
+    text-align:center;padding:30px 0 50px;color:var(--lightgrey);font-size:13px;
+  }
+  footer a{color:var(--lightgrey);}
+  .back{display:inline-block;margin-bottom:30px;color:var(--rose);font-weight:700;
+    text-decoration:none;font-size:15px;}
+  .back:hover{text-decoration:underline;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a href="index.html" class="back">← Terug naar Endo Diary</a>
+
+  <header>
+    <h1>Endo Diary</h1>
+    <p class="tagline">Wie zit erachter — en waarom</p>
+  </header>
+
+  <!-- WIE -->
+  <section class="card">
+    <span class="eyebrow">Over ons</span>
+    <h2>Geen groot bedrijf. Eén mens met een missie.</h2>
+    <p>
+      Endo Diary is gemaakt door <strong>[JOUW NAAM]</strong>. Geen arts, geen groot
+      techbedrijf — gewoon iemand die zag dat er voor Nederlandstalige vrouwen met endometriose
+      geen goede, eerlijke tool bestond om hun klachten bij te houden.
+    </p>
+    <p>
+      De aanleiding was simpel en hardnekkig: vrouwen met endometriose lopen vaak jaren rond met
+      pijn voordat ze serieus worden genomen. In de spreekkamer moeten ze complexe, wisselende
+      klachten in een paar minuten mondeling uitleggen. Dat gaat bijna altijd mis — niet omdat de
+      pijn niet echt is, maar omdat ze moeilijk in woorden te vatten is.
+    </p>
+    <p>
+      Daarom bestaat Endo Diary. Niet om iets te genezen of te diagnosticeren, maar om jouw verhaal
+      vast te houden. Elke dag dat je iets logt, bouw je aan een overzicht dat je klachten zichtbaar
+      maakt — zwart op wit, van jou, voor jou.
+    </p>
+    <div class="quote">
+      "Ik heb deze app gebouwd omdat ik vond dat vrouwen met endometriose een beter hulpmiddel
+      verdienen om gehoord te worden. Dat is het enige doel."
+    </div>
+    <p class="signature">— [JOUW NAAM], oprichter van Endo Diary</p>
+  </section>
+
+  <!-- WAT HET WEL EN NIET IS -->
+  <section class="card">
+    <span class="eyebrow">Eerlijk &amp; duidelijk</span>
+    <h2>Wat Endo Diary wel en niet is</h2>
+    <p>
+      We beloven niets wat we niet kunnen waarmaken. Daarom zijn we hier helder over:
+    </p>
+    <div class="duo">
+      <div class="col yes">
+        <h4>✓ WAT HET WEL DOET</h4>
+        <ul>
+          <li>Je klachten, pijnscores en patronen systematisch bijhouden</li>
+          <li>Menstruatie, flare-ups en behandelingen overzichtelijk bundelen</li>
+          <li>Een PDF-overzicht maken om mee te nemen naar je arts of specialist</li>
+          <li>Je consult concreter en beter voorbereid maken</li>
+        </ul>
+      </div>
+      <div class="col no">
+        <h4>✕ WAT HET NIET DOET</h4>
+        <ul>
+          <li>Het stelt géén diagnose</li>
+          <li>Het vervangt géén arts of medisch onderzoek</li>
+          <li>Het is géén bewijs dat je endometriose hebt</li>
+          <li>Het belooft niet je diagnose te versnellen</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note">
+      <strong>Medische disclaimer:</strong> Endo Diary is een hulpmiddel om klachten bij te houden
+      en je consult voor te bereiden. Het is geen medisch hulpmiddel en vervangt geen medisch advies,
+      diagnose of onderzoek. Heb je klachten? Bespreek die altijd met je huisarts of specialist.
+    </div>
+  </section>
+
+  <!-- WAAROM HET WERKT (ONDERBOUWING) -->
+  <section class="card">
+    <span class="eyebrow">Onderbouwing</span>
+    <h2>Waarom een symptoomdagboek logisch is</h2>
+    <p>
+      Endo Diary is geen los idee. Internationale richtlijnen erkennen de waarde van het bijhouden
+      van klachten bij endometriose:
+    </p>
+    <ul class="facts">
+      <li>
+        <span class="check">✓</span>
+        <span><strong>Endometriose treft ongeveer 1 op de 10 vrouwen</strong> in de vruchtbare
+        leeftijd — wereldwijd zo'n 190 miljoen mensen (Wereldgezondheidsorganisatie, WHO).</span>
+      </li>
+      <li>
+        <span class="check">✓</span>
+        <span><strong>In Nederland duurt het gemiddeld ongeveer 7 jaar</strong> voordat de diagnose
+        wordt gesteld (landelijke studie in 11 ziekenhuizen).</span>
+      </li>
+      <li>
+        <span class="check">✓</span>
+        <span>De Britse richtlijn <strong>NICE</strong> stelt dat het bijhouden van een pijn- en
+        symptoomdagboek gesprekken met de arts kan ondersteunen.</span>
+      </li>
+      <li>
+        <span class="check">✓</span>
+        <span>De Europese richtlijn <strong>ESHRE</strong> ziet waarde in dagboeken en apps om pijn
+        te objectiveren en vrouwen te helpen hun symptomen te tonen.</span>
+      </li>
+    </ul>
+    <div class="note" style="margin-top:18px;">
+      <strong>Belangrijk en eerlijk:</strong> er is op dit moment geen wetenschappelijk bewijs dat
+      een app de diagnosetijd verkort. Wat richtlijnen wél erkennen, is dat een gestructureerd
+      overzicht het gesprek met je arts concreter maakt. Dat is precies waar Endo Diary voor bedoeld is.
+    </div>
+  </section>
+
+  <!-- PRIVACY / DATA -->
+  <section class="card">
+    <span class="eyebrow">Jouw data</span>
+    <h2>Jouw gezondheidsdata is van jou</h2>
+    <p>
+      Je vertrouwt ons gevoelige informatie toe. Daar gaan we zorgvuldig mee om:
+    </p>
+    <div class="badges">
+      <span class="badge">🇪🇺 Opgeslagen op servers in de EU</span>
+      <span class="badge">🔒 Versleutelde verbinding</span>
+      <span class="badge">🗑️ Jij kunt je data verwijderen</span>
+    </div>
+    <p style="margin-top:18px;">
+      Je gegevens worden opgeslagen via Supabase op servers binnen de Europese Unie, conform de
+      Europese privacywetgeving (AVG/GDPR). Jij houdt controle: je kunt je gegevens inzien en
+      verwijderen wanneer je wilt. We verkopen je gegevens nooit aan derden.
+    </p>
+    <div class="cta-row" style="margin-top:8px;">
+      <a href="privacy.html" class="btn-ghost btn">Bekijk het privacybeleid →</a>
+    </div>
+  </section>
+
+  <!-- VOOR ORGANISATIES -->
+  <section class="card org">
+    <span class="eyebrow">Voor zorgverleners &amp; organisaties</span>
+    <h2>Werk je in de zorg of bij een patiëntenorganisatie?</h2>
+    <p>
+      Endo Diary kan vrouwen helpen om beter voorbereid een consult in te gaan. Werk je bij een
+      patiëntenvereniging, gynaecologiepraktijk, endometriosecentrum of een andere organisatie die
+      met endometriose te maken heeft? Dan denken we graag mee over een samenwerking.
+    </p>
+    <div class="cta-row">
+      <a href="mailto:support@endodiary.nl?subject=Samenwerking%20Endo%20Diary" class="btn btn-primary">Neem contact op →</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Endo Diary · Noal Rumah · Alle rechten voorbehouden.<br>
+    Contact: <a href="mailto:support@endodiary.nl">support@endodiary.nl</a></p>
+  </footer>
+
+</div>
+</body>
+</html>
