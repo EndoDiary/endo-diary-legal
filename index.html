@@ -1,471 +1,102 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Endo Diary – Jouw persoonlijke endometriose dagboek</title>
-  <meta name="description" content="Endo Diary helpt jou bij het bijhouden van jouw klachten en symptomen, zodat jij eindelijk gehoord wordt door jouw arts." />
-  <meta name="robots" content="index, follow" />
-  <style>
-    /* ── Reset & base ── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      background: #faf4f7;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      color: #2d2d2d;
-      line-height: 1.6;
-    }
-
-    .page-wrapper {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 3rem 1.25rem 4rem;
-    }
-
-    /* ── Branding ── */
-    .brand {
-      text-align: center;
-      margin-bottom: 2.5rem;
-    }
-
-    .brand h1 {
-      font-size: 2rem;
-      font-weight: 800;
-      color: #1a1a1a;
-      letter-spacing: -0.02em;
-    }
-
-    .brand .tagline {
-      font-size: 0.95rem;
-      color: #999;
-      margin-top: 0.25rem;
-    }
-
-    /* ── Emotional hero section ── */
-    .hero-section {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    .hero-section h2 {
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: #1a1a1a;
-      margin-bottom: 1rem;
-      line-height: 1.35;
-    }
-
-    .hero-text {
-      background: #ffffff;
-      border-radius: 20px;
-      box-shadow: 0 2px 20px rgba(0,0,0,0.07);
-      padding: 2rem 1.75rem;
-      margin-bottom: 1.5rem;
-      text-align: left;
-    }
-
-    .hero-text p {
-      font-size: 0.95rem;
-      color: #555;
-      line-height: 1.75;
-      margin-bottom: 1rem;
-    }
-
-    .hero-text p:last-child {
-      margin-bottom: 0;
-    }
-
-    .hero-text .hero-signature {
-      font-size: 0.88rem;
-      color: #b5477a;
-      font-weight: 600;
-      margin-top: 1.25rem;
-      text-align: right;
-    }
-
-    /* ── Cards ── */
-    .card {
-      background: #ffffff;
-      border-radius: 20px;
-      box-shadow: 0 2px 20px rgba(0,0,0,0.07);
-      padding: 2rem 1.75rem;
-      margin-bottom: 1.5rem;
-    }
-
-    /* ── Rapport unlock card ── */
-    .rapport-card {
-      border-top: 4px solid #b5477a;
-    }
-
-    .rapport-header {
-      margin-bottom: 1.25rem;
-    }
-
-    .rapport-header .label {
-      display: inline-block;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #b5477a;
-      background: #fde8f2;
-      padding: 0.25rem 0.65rem;
-      border-radius: 20px;
-      margin-bottom: 0.75rem;
-    }
-
-    .rapport-header h2 {
-      font-size: 1.45rem;
-      font-weight: 700;
-      color: #1a1a1a;
-      line-height: 1.25;
-      margin-bottom: 0.6rem;
-    }
-
-    .rapport-header .intro {
-      font-size: 0.95rem;
-      color: #555;
-      line-height: 1.65;
-    }
-
-    /* ── Emotional message ── */
-    .heart-message {
-      background: linear-gradient(135deg, #fdf0f6, #fdeef8);
-      border-radius: 14px;
-      padding: 1.1rem 1.25rem;
-      margin: 1.25rem 0;
-      border-left: 3px solid #d4789f;
-    }
-
-    .heart-message p {
-      font-size: 0.9rem;
-      color: #7a3a5a;
-      line-height: 1.65;
-      font-style: italic;
-    }
-
-    /* ── Feature list ── */
-    .feature-list {
-      list-style: none;
-      margin: 1.25rem 0;
-    }
-
-    .feature-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.7rem;
-      padding: 0.5rem 0;
-      font-size: 0.92rem;
-      color: #444;
-      border-bottom: 1px solid #f5edf3;
-      line-height: 1.45;
-    }
-
-    .feature-list li:last-child { border-bottom: none; }
-
-    .feature-list .icon {
-      flex-shrink: 0;
-      width: 22px;
-      height: 22px;
-      background: #b5477a;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 1px;
-    }
-
-    .feature-list .icon svg {
-      width: 11px;
-      height: 11px;
-      stroke: #fff;
-      stroke-width: 3;
-      fill: none;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    /* ── Price row ── */
-    .price-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: #fdf0f6;
-      border-radius: 12px;
-      padding: 0.9rem 1.1rem;
-      margin: 1.25rem 0;
-    }
-
-    .price-row .price-label {
-      font-size: 0.85rem;
-      color: #888;
-    }
-
-    .price-row .price-label strong {
-      display: block;
-      font-size: 0.92rem;
-      color: #444;
-      font-weight: 600;
-    }
-
-    .price-row .price-amount {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: #b5477a;
-    }
-
-    .price-row .price-period {
-      font-size: 0.78rem;
-      color: #b5477a;
-      font-weight: 500;
-    }
-
-    /* ── CTA button ── */
-    .btn-cta {
-      display: block;
-      width: 100%;
-      padding: 1rem;
-      background: #b5477a;
-      color: #fff;
-      font-size: 1rem;
-      font-weight: 700;
-      border: none;
-      border-radius: 12px;
-      text-align: center;
-      text-decoration: none;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.1s;
-      margin-bottom: 0.75rem;
-    }
-
-    .btn-cta:hover  { background: #9a3566; }
-    .btn-cta:active { transform: scale(0.98); }
-
-    .cancel-note {
-      text-align: center;
-      font-size: 0.78rem;
-      color: #aaa;
-      line-height: 1.5;
-    }
-
-    /* ── Legal card ── */
-    .legal-card h2 {
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #bbb;
-      margin-bottom: 1rem;
-    }
-
-    .legal-item {
-      margin-bottom: 1.25rem;
-    }
-
-    .legal-item:last-child { margin-bottom: 0; }
-
-    .legal-item h3 {
-      font-size: 1rem;
-      font-weight: 600;
-      color: #2d2d2d;
-      margin-bottom: 0.3rem;
-    }
-
-    .legal-item p {
-      font-size: 0.88rem;
-      color: #777;
-      margin-bottom: 0.4rem;
-      line-height: 1.55;
-    }
-
-    .legal-item a {
-      font-size: 0.88rem;
-      color: #b5477a;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    .legal-item a:hover { text-decoration: underline; }
-
-    /* ── Footer ── */
-    .footer {
-      text-align: center;
-      margin-top: 2rem;
-      font-size: 0.78rem;
-      color: #ccc;
-      line-height: 1.7;
-    }
-
-    .footer a {
-      color: #ccc;
-      text-decoration: underline;
-    }
-
-    /* ── Divider ── */
-    .divider {
-      border: none;
-      border-top: 1px solid #f0e8ed;
-      margin: 1.25rem 0;
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<meta name="description" content="Endo Diary helpt jou bij het bijhouden van jouw klachten en symptomen, zodat jij eindelijk gehoord wordt door jouw arts.">
+<title>Endo Diary – Jouw persoonlijke endometriose dagboek</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f7f4f2;--card:#ffffff;--line:#eee7e2;--rose:#c98f8f;--rose-d:#b57d7d;--ink:#1f1a1a;--body:#4a4444;--muted:#6b6464;--soft:#fdf6f4}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--body);font-family:'Nunito',Arial,Helvetica,sans-serif;font-size:16px;line-height:1.75}
+.wrap{max-width:680px;margin:0 auto;padding:28px 20px 48px}
+a{color:var(--rose);text-decoration:none}
+a:hover{text-decoration:underline}
+.brand{font-weight:800;font-size:22px;color:var(--ink);letter-spacing:.5px}
+.tagline{color:var(--muted);font-size:14px;margin-top:2px}
+h1{font-size:32px;line-height:1.25;color:var(--ink);margin:26px 0 10px}
+h2{font-size:24px;line-height:1.3;color:var(--ink);margin:0 0 14px}
+h3{font-size:17px;color:var(--ink);margin:26px 0 8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:30px 28px;margin:22px 0}
+.btn{display:inline-block;background:var(--rose);color:#fff !important;font-weight:800;font-size:16px;padding:15px 26px;border-radius:999px;text-decoration:none !important}
+.btn:hover{background:var(--rose-d)}
+.center{text-align:center}
+.quote{border-left:3px solid var(--rose);background:var(--soft);border-radius:0 10px 10px 0;padding:14px 18px;font-style:italic;margin:18px 0}
+ul.checks{list-style:none;padding:0;margin:18px 0}
+ul.checks li{padding-left:26px;position:relative;margin:9px 0}
+ul.checks li::before{content:"\2713";position:absolute;left:0;color:var(--rose);font-weight:800}
+.price-name{font-weight:800;color:var(--ink);font-size:19px}
+.price-trial{color:var(--rose-d);font-weight:800;margin-top:2px}
+.price{font-size:34px;font-weight:800;color:var(--ink);margin:12px 0 2px}
+.price small{font-size:15px;font-weight:600;color:var(--muted)}
+.finelines{font-size:13px;color:var(--muted);margin-top:14px}
+.disclaimer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px;margin-top:22px}
+.linkcard{display:block;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:12px 0;color:var(--body)}
+.linkcard b{color:var(--ink)}
+.linkcard span{display:block;font-size:14px;margin-top:4px}
+footer{margin-top:34px;border-top:1px solid var(--line);padding-top:18px;font-size:13px;color:var(--muted);text-align:center;line-height:1.9}
+.legal p,.legal li{font-size:15px}
+.legal h2{font-size:20px;margin-top:34px}
+.legal h3{font-size:16px}
+.versionline{color:var(--muted);font-size:14px;margin-bottom:26px}
+.backlink{font-size:14px}
+</style>
 </head>
 <body>
-  <div class="page-wrapper">
+<div class="wrap">
 
-    <!-- Branding -->
-    <div class="brand">
-      <h1>Endo Diary</h1>
-      <p class="tagline">Jouw persoonlijke endometriose dagboek · voor vrouwen in Nederland en België</p>
-    </div>
+<div class="center">
+  <div class="brand">Endo Diary</div>
+  <div class="tagline">Jouw persoonlijke endometriose dagboek &middot; voor vrouwen in Nederland en Belgi&euml;</div>
+  <h1>Laat jouw arts zien wat jij elke dag doorstaat</h1>
+  <p><a class="btn" href="HIER-APP-STORE-LINK">Download Endo Diary in de App Store</a></p>
+</div>
 
-    <!-- ── Emotional hero section ── -->
-    <div class="hero-section">
-      <h2>Voor jou, die elke dag opnieuw doorgaat</h2>
-      <div class="hero-text">
-        <p>
-          Wij weten het. Niet iedereen om je heen begrijpt wat jij doormaakt. De pijn die opeens opkomt. De vermoeidheid
-          die alles zwaarder maakt. De momenten dat je glimlacht terwijl je vanbinnen huilt, omdat het te moeilijk
-          is om uit te leggen wat endometriose met je doet.
-        </p>
-        <p>
-          Je voelt je soms alleen. Soms niet gehoord. Soms twijfel je aan jezelf, omdat de wereld
-          niet ziet wat jij van binnen voelt. Maar wij willen dat je dit weet: jouw pijn is echt. Jouw ervaring telt.
-          En wat jij elke dag doet om door te gaan, is ongelooflijk sterk.
-        </p>
-        <p>
-          Endo Diary is er voor jou. Niet als dokter, niet als wondermiddel, maar als iets dat jouw verhaal
-          vasthoudt. Elke dag dat je logt, bouw je aan een overzicht dat jouw klachten zichtbaar maakt. Zodat
-          jij straks niet meer hoeft te zoeken naar woorden bij de arts. Zodat jij niet meer hoeft te hopen
-          dat iemand je gelooft. Het bewijs staat er. Zwart op wit. Van jou, voor jou.
-        </p>
-        <p>
-          Je bent niet gek. Je bent niet zwak. Je bent een vrouw die elke dag opnieuw opstaat, ondanks alles.
-          En dat verdient alle respect van de wereld.
-        </p>
-        <p>
-          Wij staan achter je. Altijd.
-        </p>
-        <p class="hero-signature">Het Endo Diary team</p>
-      </div>
-    </div>
+<div class="card">
+  <h2>Voor jou, die elke dag opnieuw doorgaat</h2>
+  <p>Wij weten het. Niet iedereen om je heen begrijpt wat jij doormaakt. De pijn die opeens opkomt. De vermoeidheid die alles zwaarder maakt. De momenten dat je glimlacht terwijl je vanbinnen huilt, omdat het te moeilijk is om uit te leggen wat endometriose met je doet.</p>
+  <p>Je voelt je soms alleen. Soms niet gehoord. Soms twijfel je aan jezelf, omdat de wereld niet ziet wat jij van binnen voelt. Maar wij willen dat je dit weet: jouw pijn is echt. Jouw ervaring telt. En wat jij elke dag doet om door te gaan, is ongelooflijk sterk.</p>
+  <p>Endo Diary is er voor jou. Niet als dokter, niet als wondermiddel, maar als iets dat jouw verhaal vasthoudt. Elke dag dat je logt, bouw je aan een overzicht dat jouw klachten zichtbaar maakt. Zodat jij straks niet meer hoeft te zoeken naar woorden bij de arts. Zodat jij niet meer hoeft te hopen dat iemand je gelooft. Het bewijs staat er. Zwart op wit. Van jou, voor jou.</p>
+  <p>Je bent niet gek. Je bent niet zwak. Je bent een vrouw die elke dag opnieuw opstaat, ondanks alles. En dat verdient alle respect van de wereld.</p>
+  <p>Wij staan achter je. Altijd.</p>
+  <p><strong>Het Endo Diary team</strong></p>
+</div>
 
-    <!-- ── Rapport unlock card ── -->
-    <div class="card rapport-card">
+<div class="card">
+  <h2>Jouw rapport, klaar voor de spreekkamer</h2>
+  <p>Endometriose is onzichtbaar voor de buitenwereld, maar niet meer in jouw rapport. Met Endo Diary breng jij jouw klachten, pijnscores en patronen samen in &eacute;&eacute;n overzicht, zodat jij naar jouw afspraak gaat met bewijs in handen.</p>
+  <div class="quote">&ldquo;Jij verdient het om serieus genomen te worden. Jouw pijn is echt, jouw verhaal telt en dit rapport helpt jou dat te laten zien. We wensen jou heel veel sterkte bij jouw gesprek met jouw arts. &#128155;&rdquo;</div>
+  <ul class="checks">
+    <li>Volledig overzicht van jouw gelogde symptomen en pijnscores</li>
+    <li>Menstruatiegegevens, flare-ups en behandelingen overzichtelijk gebundeld</li>
+    <li>Direct deelbaar met jouw arts of specialist</li>
+    <li>Opzegbaar wanneer je wil via jouw App Store-account, geen verborgen kosten</li>
+    <li>Onbeperkt rapporten downloaden zolang je actief bent</li>
+  </ul>
 
-      <div class="rapport-header">
-        <span class="label">Rapport ontgrendelen</span>
-        <h2>Laat jouw arts zien wat jij elke dag doorstaat</h2>
-        <p class="intro">
-          Endometriose is onzichtbaar voor de buitenwereld, maar niet meer in jouw rapport.
-          Met Endo Diary breng jij jouw klachten, pijnscores en patronen samen in één
-          overzicht, zodat jij naar jouw afspraak gaat met bewijs in handen.
-        </p>
-      </div>
-
-      <!-- Emotional message -->
-      <div class="heart-message">
-        <p>
-          "Jij verdient het om serieus genomen te worden. Jouw pijn is echt,
-          jouw verhaal telt en dit rapport helpt jou dat te laten zien.
-          We wensen jou heel veel sterkte bij jouw gesprek met jouw arts. 💛"
-        </p>
-      </div>
-
-      <!-- Features -->
-      <ul class="feature-list">
-        <li>
-          <span class="icon">
-            <svg viewBox="0 0 12 12"><polyline points="10 3 5 9 2 6"/></svg>
-          </span>
-          <span>Volledig overzicht van jouw gelogde symptomen en pijnscores</span>
-        </li>
-        <li>
-          <span class="icon">
-            <svg viewBox="0 0 12 12"><polyline points="10 3 5 9 2 6"/></svg>
-          </span>
-          <span>Menstruatiegegevens, flare-ups en behandelingen overzichtelijk gebundeld</span>
-        </li>
-        <li>
-          <span class="icon">
-            <svg viewBox="0 0 12 12"><polyline points="10 3 5 9 2 6"/></svg>
-          </span>
-          <span>Direct deelbaar met jouw arts of specialist</span>
-        </li>
-        <li>
-          <span class="icon">
-            <svg viewBox="0 0 12 12"><polyline points="10 3 5 9 2 6"/></svg>
-          </span>
-          <span>Opzegbaar wanneer je wil, geen verborgen kosten</span>
-        </li>
-        <li>
-          <span class="icon">
-            <svg viewBox="0 0 12 12"><polyline points="10 3 5 9 2 6"/></svg>
-          </span>
-          <span>Onbeperkt rapporten downloaden zolang je actief bent</span>
-        </li>
-      </ul>
-
-      <!-- Price -->
-      <div class="price-row">
-        <div class="price-label">
-          Maandelijks abonnement
-          <strong>Inclusief btw · Elk moment opzegbaar</strong>
-        </div>
-        <div>
-          <div class="price-amount">€ 7,99</div>
-          <div class="price-period">per maand</div>
-        </div>
-      </div>
-
-      <!-- CTA -->
-      <!-- Vervang de href hieronder door jouw Stripe Payment Link -->
-      <a href="https://buy.stripe.com/14AaEY4LQayKe520IxfMA02" class="btn-cta">
-        Ontgrendel mijn rapport →
-      </a>
-
-      <p class="cancel-note">
-        🔒 Veilig betalen via Stripe &nbsp;·&nbsp; Opzegbaar per maand · Geen verborgen kosten
-      </p>
-      <p class="cancel-note" style="margin-top:0.6rem;">
-        Endo Diary is een hulpmiddel om klachten bij te houden en is geen medisch hulpmiddel. Het vervangt geen medisch advies, diagnose of onderzoek.
-      </p>
-
-    </div>
-
-    <!-- ── Juridische informatie ── -->
-    <div class="card legal-card">
-      <h2>Officiële informatie</h2>
-
-      <div class="legal-item">
-        <h3>Privacybeleid</h3>
-        <p>Lees hoe wij omgaan met jouw gegevens, hoe jouw gezondheidsdata wordt opgeslagen en welke controle jij zelf hebt.</p>
-        <a href="privacy.html">Bekijk het privacybeleid →</a>
-      </div>
-
-      <hr class="divider" />
-
-      <div class="legal-item">
-        <h3>Gebruiksvoorwaarden</h3>
-        <p>Lees de voorwaarden voor het gebruik van de app, inclusief verantwoordelijkheden, betalingen en gebruiksregels.</p>
-        <a href="terms.html">Bekijk de gebruiksvoorwaarden →</a>
-      </div>
-      
-      <hr class="divider" />
-
-      <div class="legal-item">
-        <h3>Over Endo Diary</h3>
-        <p>Lees wie er achter Endo Diary zit, waarom de app bestaat, wat de app wel en niet doet, en hoe jouw gezondheidsdata wordt beschermd.</p>
-        <a href="over-ons.html">Over ons → Wie zit erachter →</a>
-      </div>
-    </div>
-
-    <!-- Footer -->
-    <div class="footer">
-      © 2026 Endo Diary. Alle rechten voorbehouden.<br />
-      Contact: <a href="mailto:support@endodiary.nl">support@endodiary.nl</a>
-    </div>
-
+  <div class="center">
+    <div class="price-name">Endo Diary Premium</div>
+    <div class="price-trial">7 dagen gratis proberen</div>
+    <div class="price">&euro;&nbsp;7,99 <small>per maand</small></div>
+    <div><small style="color:var(--muted)">of &euro;&nbsp;59,99 per jaar &middot; inclusief btw</small></div>
+    <p style="margin-top:18px"><a class="btn" href="HIER-APP-STORE-LINK">Download in de App Store</a></p>
+    <p class="finelines">Je sluit het abonnement af in de app zelf. Betaling en beheer verlopen via jouw Apple-account &mdash; elk moment opzegbaar, geen verborgen kosten.</p>
   </div>
+
+  <p class="disclaimer">Endo Diary is een hulpmiddel om klachten bij te houden en is geen medisch hulpmiddel. Het vervangt geen medisch advies, diagnose of onderzoek.</p>
+</div>
+
+<h2 style="margin-top:34px">Offici&euml;le informatie</h2>
+<a class="linkcard" href="https://endodiary.nl/privacy.html"><b>Privacybeleid &rarr;</b><span>Lees hoe wij omgaan met jouw gegevens, hoe jouw gezondheidsdata wordt opgeslagen en welke controle jij zelf hebt.</span></a>
+<a class="linkcard" href="https://endodiary.nl/terms.html"><b>Gebruiksvoorwaarden &rarr;</b><span>Lees de voorwaarden voor het gebruik van de app, inclusief verantwoordelijkheden, abonnementen en gebruiksregels.</span></a>
+<a class="linkcard" href="https://endodiary.nl/over-ons.html"><b>Over Endo Diary &rarr;</b><span>Lees wie er achter Endo Diary zit, waarom de app bestaat, wat de app wel en niet doet, en hoe jouw gezondheidsdata wordt beschermd.</span></a>
+<footer>
+  &copy; 2026 Endo Diary. Alle rechten voorbehouden.<br>
+  Noal Rumah &middot; KvK 91362237 &middot; Contact: <a href="mailto:support@endodiary.nl">support@endodiary.nl</a>
+</footer>
+</div>
 </body>
 </html>
